@@ -12,12 +12,13 @@ button.onclick=function()
         {
             if(request.status === 200)
             {
-                var counter=request.responseText;
+                var counter=request.responeText;
                 var span=document.getElementById("count");
-                span.innerHTML=78787878;
+                span.innerHTML=counter.toString();
             }
         }
     };
+    
     request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/counter',true);
     request.send(null);
     
