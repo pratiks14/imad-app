@@ -1,6 +1,6 @@
 //counter code
 var button=document.getElementById("button");
-var counter=0
+//var counter=0
 
 button.onclick=function()
 {
@@ -13,7 +13,7 @@ button.onclick=function()
             //if(request.status === 200)
             //{
                 var counter=request.responeText;
-                var span=document.getElementById("count")
+                var span=document.getElementById("count");
                 span.innerHTML=counter.toString();
             //} 
         }
@@ -21,9 +21,5 @@ button.onclick=function()
     
     request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/counter',true);
     request.send(null);
-
-    var span=document.getElementById("count")
-    span.innerHTML=counter.toString();
-               
     
 };
