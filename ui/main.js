@@ -10,16 +10,18 @@ button.onclick=function()
     {
         if(request.readystate === XMLHttpRequest.DONE)
         {
-            if(request.status === 200)
-            {
+            //if(request.status === 200)
+            //{
                 var counter=request.responeText;
-            } 
+                var span=document.getElementById("count")
+                span.innerHTML=counter.toString();
+            //} 
         }
     };
     
-    //request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/counter',true);
-    //request.send(null);
-    counter+=1;
+    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/counter',true);
+    request.send(null);
+
     var span=document.getElementById("count")
     span.innerHTML=counter.toString();
                
