@@ -24,7 +24,7 @@ button.onclick=function()
     
 };
 
-var myname = document.getElementById('name').value;
+var name = document.getElementById('name').value;
 var submit=document.getElementById('submit_btn');
 submit.onclick=function()
 {
@@ -39,7 +39,7 @@ submit.onclick=function()
                 var names=request.responseText;
                 names=JSON.parse(names);
                 var list='';
-                for(var i=0;i<names.length;i++)
+                for(var i=0;i<names.length();i++)
                 {
                     list+= '<li>'+names[i]+'</li>';
                 }
