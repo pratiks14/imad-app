@@ -35,6 +35,14 @@ app.get('/article-three',function(req,res){
     res.send("article three requested");
 });
 
+var names=[];
+app.get('/submit-name/:name',function(req,res)
+{
+    var name=req.params.name;
+    names.push(name);
+    res.send(JSON.stringyfy(names));
+});
+
 app.get('/ui/main.js',function(req,res){
     res.sendFile(path.join(__dirname,'ui','main.js'));
 });
