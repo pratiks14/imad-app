@@ -36,7 +36,7 @@ app.get('/article-three',function(req,res){
 });
 
 var names=[];
-app.get('/submit-name/:name',function(req,res)//:name,then req.params.name
+app.get('/submit-name',function(req,res)//:name,then req.params.name
 {
     var name=req.query.name;
     names.push(name);
