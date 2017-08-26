@@ -26,6 +26,8 @@ button.onclick=function()
 
 
 var submit=document.getElementById('submit_btn');
+var myname = document.getElementById('name').value;
+
 submit.onclick=function()
 {
     var request=new XMLHttpRequest();//make a request to counter endpoint
@@ -48,7 +50,6 @@ submit.onclick=function()
             } 
         }
     };
-    var name = document.getElementById('name').value;
-    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/submit-name?name='+name,true);
+    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/submit-name?name='+myname,true);
     request.send(null);
 };    
