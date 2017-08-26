@@ -24,6 +24,7 @@ button.onclick=function()
     
 };
 
+var name = document.getElementById('name').value;
 var submit=document.getElementById('submit_btn');
 submit.onclick=function()
 {
@@ -47,7 +48,6 @@ submit.onclick=function()
             } 
         }
     };
-    var name = document.getElementById('name').value;
     request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/submit-name?name='+myname,true);
     request.send(null);
 };    
