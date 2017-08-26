@@ -26,8 +26,8 @@ button.onclick=function()
 
 
 var submit=document.getElementById('submit_btn');
-var myname = document.getElementById('name').value;
-
+var name = document.getElementById('name').value;
+var myname="scent";
 submit.onclick=function()
 {
     var request=new XMLHttpRequest();//make a request to counter endpoint
