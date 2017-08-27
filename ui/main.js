@@ -59,6 +59,6 @@ comm_sub.onclick=function()
 {
     var comment=document.getElementById('comment').innerHTML;
     comments.push(comment);
-    document.getElementById('comment').innerHTML="";
+    document.getElementById('comment').innerHTML=comments;
     
 };
