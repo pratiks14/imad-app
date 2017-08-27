@@ -26,7 +26,6 @@ button.onclick=function()
 
 
 var submit=document.getElementById('submit_btn');
-
 submit.onclick=function()
 {
     var request=new XMLHttpRequest();//make a request to counter endpoint
@@ -53,3 +52,13 @@ submit.onclick=function()
     request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/submit-name?name='+myname,true);
     request.send(null);
 };    
+
+var comments=[];
+var comm_sub=document.getElementById('submit_btn');
+comm_sub.onclick=function()
+{
+    var comment=document.getElementById('comment').innerHTML;
+    comments.push(comment);
+    document.getElementById('comment').innerHTML="";
+    
+};
