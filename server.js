@@ -34,8 +34,8 @@ app.get('/counter',function(req,res)
 
 app.get('/articles/:articlename',function(req,res)
 {
-    var articlename=req.params.articlename;
-    pool.query("select * from article where title="+articlename,function(err,result)
+    //var articlename=req.params.articlename;
+    pool.query("select * from article where title="+req.params.articlename,function(err,result)
     {
         if(err)
         {
