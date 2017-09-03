@@ -6,7 +6,7 @@ var config=
 {
     user:'coco98',
     database:'pratik1rn13cs064',
-    host:'db.imad.hosura-app.io',
+    host:'db.imad.hasura-app.io',
     port:'5432',
     password:process.env.DB_PASSWORD
 };
