@@ -1,6 +1,17 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
+var Pool=require('pg').Pool;
+var config=
+{
+    user:'coco98',
+    database:'pratik1rn13cs064',
+    host:'db.imad.hosura-app.io',
+    port:'5432',
+    password:process.env.DB_PASSWORD
+};
+
+var pool= new Pool(config);
 
 var app = express();
 app.use(morgan('combined'));
@@ -50,6 +61,17 @@ app.get('/ui/main.js',function(req,res){
 app.get('/test-db',function(req,res)
 {
     //make a select request
+    pool.query('SELECT * FROM test',function(err,result)
+    {
+        if(err)
+        {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            res.send(JSON.stringify(result));
+        }
+    });
     //return a response with the result
 });
 // Do not change port, otherwise your app won't run on IMAD servers
