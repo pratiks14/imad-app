@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var crypto=require('crypto');
+var bodyParser=require('body-parser');
 var Pool=require('pg').Pool;
 var config=
 {
@@ -17,6 +18,7 @@ var pool= new Pool(config);
 
 var app = express();
 app.use(morgan('combined'));
+app.use(bodyParser.json());//telling the express framework for every incoming request if it sees a content type json it uses body-parser
 
 function hash(input,salt)
 {
@@ -29,6 +31,38 @@ app.get('/hash/:input',function(req,res)
     var hashString = hash(req.params.input,'this-is-some-random-string');
     res.send(hashString);
 });
+
+app.post('/create-user',function(req,res)
+{
+    //through json request
+    var username = req.body.username;
+    var password = req.body.password;
+    
+    //generate salt
+    var salt = crypto.randomBytes(128).toString('hex');
+    //username,password
+    var dbString = hash(username,salt);
+    pool.query('insert into "user"(username,password values($1,$2)',[username,dbsString],function(err,result)
+    {
+        if(err)
+        {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            if(result.rows.length === 0)
+            {
+                res.status(404).send("article not found");
+            }
+            else
+            {   
+                res.send('user successfully created! '+username);
+            }
+        }
+    });
+});
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
