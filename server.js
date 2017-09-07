@@ -50,14 +50,8 @@ app.post('/create-user',function(req,res)
         }
         else
         {
-            if(result.rows.length === 0)
-            {
-                res.status(404).send("article not found");
-            }
-            else
-            {   
-                res.send('user successfully created! '+username);
-            }
+           
+            res.send('user successfully created! '+username);
         }
     });
 });
