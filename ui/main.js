@@ -24,7 +24,7 @@ submit.onclick=function()
             }
         }
     };
-    var name = document.getElementById('username').value;//if this is declared outside onclick function then it would read what is saved when doc is loade
+    var username = document.getElementById('username').value;//if this is declared outside onclick function then it would read what is saved when doc is loade
     var password = document.getElementById('password').value;
     console.log(username);
     console.log(password);
