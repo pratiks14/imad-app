@@ -1,30 +1,5 @@
-//counter code
-var button=document.getElementById("button");
-//var counter=0
 
-button.onclick=function()
-{
-    var request=new XMLHttpRequest();//make a request to counter endpoint
-     
-    request.onreadystatechange = function()
-    {
-        if(request.readyState === XMLHttpRequest.DONE)
-        {
-            if(request.status === 200)
-            {
-                var counter=request.responseText;
-                var span=document.getElementById("count");
-                span.innerHTML=counter.toString();
-            } 
-        }
-    };
-    
-    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/counter',true);
-    request.send(null);
-    
-};
-
-
+//submit username psssword to login
 var submit=document.getElementById('submit_btn');
 submit.onclick=function()
 {
@@ -36,29 +11,25 @@ submit.onclick=function()
         {
             if(request.status === 200)
             {
-                var names=request.responseText;
-                names=JSON.parse(names);
-                var list='';
-                for(var i=0;i<names.length;i++)
-                {
-                    list+= '<li>'+names[i]+'</li>';
-                }
-                var ul=document.getElementById('namelist');
-                ul.innerHTML=list;
+                console.log("user logged in");
+                alert("log in successfull!!");
             } 
+            else if(request.status == 403 )
+            {
+                alert("username/password incorrect!!")
+            }
+            else if(request.status === 500)
+            {
+                alert("somehing went wrong in the server!!");
+            }
         }
     };
-    var name = document.getElementById('name').value;//if this is declared outside onclick function then it would read what is saved when doc is //loade
-    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/submit-name?name='+myname,true);
-    request.send(null);
+    var name = document.getElementById('username').value;//if this is declared outside onclick function then it would read what is saved when doc is loade
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/login',true);
+    request.setRequestHeader('content-type','application/json');
+    request.send(JSON.stringify({username:username,password:password}));
 };    
 
-var comments=[];
-var comm_sub=document.getElementById('submit_btn');
-comm_sub.onclick=function()
-{
-    var comment=document.getElementById('comment').innerHTML;
-    comments.push(comment);
-    document.getElementById('comment').innerHTML=comments;
-    
-};
