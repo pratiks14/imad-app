@@ -82,9 +82,9 @@ app.post('/user-login',function(req,res)
            if(hashed === dbString)
            {
                //set session id
-               req.session.auth={
+              /* req.session.auth={
                    userId : result.rows[0].id
-               };
+               };*/
                //set cookie with session id
                //internally the server maps the session id to the object
                //which has value {auth:{userid}}
