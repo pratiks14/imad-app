@@ -4,6 +4,7 @@ var path = require('path');
 var crypto=require('crypto');
 var bodyParser=require('body-parser');
 var Pool=require('pg').Pool;
+var session=require('express-session');
 var config=
 {
     user:'pratik1rn13cs064',
@@ -19,6 +20,13 @@ var pool= new Pool(config);
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());//telling the express framework for every incoming request if it sees a content type json it uses body-parser
+app.use(session(
+    {
+        secret : "somerandomsecretvalue",
+        cookie : {
+            maxAge : 1000*60*60*24*30
+        }
+    }))
 
 function hash(input,salt)
 {
@@ -73,6 +81,13 @@ app.post('/user-login',function(req,res)
            var hashed =  hash(password,salt);
            if(hashed === dbString)
            {
+               //set session id
+               req.session.auth={
+                   userId : result.rows[0].id
+               };
+               //set cookie with session id
+               //internally the server maps the session id to the object
+               //which has value {auth:{userid}}
                res.send("credentials verified!!");
                
            }
@@ -88,6 +103,19 @@ app.post('/user-login',function(req,res)
     });
 });
 
+app.get('/check-login',function(req,res)
+{
+    if(req.session && req.session.auth && req.session.useId)
+    {
+        res.send("you are logged in: "+ req.session.userId.toString());
+    }
+    else
+    {
+        res.send("you are not logged in!!");
+    }
+});
+
+app.
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
