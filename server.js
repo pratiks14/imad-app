@@ -78,7 +78,7 @@ app.post('/user-login',function(req,res)
            }
            else
            {
-               res.send("invalid password!!"+hashed+"\n"+dbString);
+               res.send("invalid password!!");
                
            }
             
