@@ -28,7 +28,7 @@ submit.onclick=function()
     var password = document.getElementById('password').value;
     console.log(username);
     console.log(password);
-    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/login',true);
+    request.open('GET','http://pratik1rn13cs064.imad.hasura-app.io/user-login',true);
     request.setRequestHeader('content-type','application/json');
     request.send(JSON.stringify({username:username,password:password}));
 };    
