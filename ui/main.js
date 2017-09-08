@@ -30,6 +30,6 @@ submit.onclick=function()
     console.log(password);
     request.open('POST','http://pratik1rn13cs064.imad.hasura-app.io/user-login',true);
     request.setRequestHeader('content-type','application/json');
-    request.send(JSON.stringify({username:username,password:password}));
+    request.send(JSON.stringify({'username':username,"password":password}));
 };    
 
