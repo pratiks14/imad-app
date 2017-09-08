@@ -69,7 +69,17 @@ app.post('/user-login',function(req,res)
         else
         {
            var dbString = result.rows[0].password;
-           var salt = dbString.split('$')
+           var salt = dbString.split('$')[2];
+           var hashed =  hash(password,salt);
+           if(hashed === dbString)
+           {
+               res.send("credentials verified!!");
+               
+           }
+           else
+           {
+               res.send("invalid password!!");
+           }
             
         }
         
