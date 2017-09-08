@@ -20,13 +20,13 @@ var pool= new Pool(config);
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());//telling the express framework for every incoming request if it sees a content type json it uses body-parser
-app.use(session(
+/*app.use(session(
     {
         secret : "somerandomsecretvalue",
         cookie : {
             maxAge : 1000*60*60*24*30
         }
-    }))
+    }))*/
 
 function hash(input,salt)
 {
@@ -205,6 +205,6 @@ app.get('/test-db',function(req,res)
 // Use 8080 only for local development if you already have apache running on 80
 
 var port = 80;
-app.listen(port, function () {
+    app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
