@@ -20,13 +20,13 @@ var pool= new Pool(config);
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());//telling the express framework for every incoming request if it sees a content type json it uses body-parser
-/*app.use(session(
+app.use(session(
     {
         secret : "somerandomsecretvalue",
         cookie : {
             maxAge : 1000*60*60*24*30
         }
-    }))*/
+    }));
 
 function hash(input,salt)
 {
@@ -82,9 +82,9 @@ app.post('/user-login',function(req,res)
            if(hashed === dbString)
            {
                //set session id
-              /* req.session.auth={
+               req.session.auth={
                    userId : result.rows[0].id
-               };*/
+               };
                //set cookie with session id
                //internally the server maps the session id to the object
                //which has value {auth:{userid}}
